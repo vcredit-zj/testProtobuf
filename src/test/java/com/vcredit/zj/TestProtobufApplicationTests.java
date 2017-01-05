@@ -50,4 +50,13 @@ public class TestProtobufApplicationTests {
 
 	}
 
+	@Test
+	public void contextJson() {
+
+		ResponseEntity<BookOuterClass.Book> customer = restTemplate.getForEntity(
+				"http://127.0.0.1:" + port + "hello-world?name=benli", BookOuterClass.Book.class);
+
+		System.out.println("customer retrieved: " + customer.toString());
+
+	}
 }

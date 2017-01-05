@@ -7,19 +7,25 @@ package com.vcredit.zj.bean;
 public class Greeting {
 
     private final long id;
-    private final String content;
+    private final String name;
+    private final String desc;
 
-    public Greeting(long id, String content) {
+
+    public Greeting(long id, String name, String desc) {
         this.id = id;
-        this.content = content;
+        this.name = name;
+        this.desc = desc;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
+    public String getDesc() {
+        return desc;
+    }
 }
