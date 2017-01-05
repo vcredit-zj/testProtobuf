@@ -1,10 +1,12 @@
 package com.vcredit.zj.controller;
 
 import com.vcredit.zj.bean.Greeting;
+import com.vcredit.zj.bean.proto.BookOuterClass;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,4 +35,15 @@ public class HelloWorldController {
         return "Greetings from Spring Boot!";
     }
 
+    @Bean
+    ProtobufHttpMessageConverter protobufHttpMessageConverter() {
+        return new ProtobufHttpMessageConverter();
+    }
+
+    @RequestMapping(path = "/proto", method=RequestMethod.GET)
+    public @ResponseBody BookOuterClass.Book indexProto() {
+        BookOuterClass.Book.Builder bookBuilder = BookOuterClass.Book.newBuilder();
+        bookBuilder.setId(111).setName("benli").setDesc("hello world");
+        return bookBuilder.build();
+    }
 }

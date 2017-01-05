@@ -27,19 +27,34 @@ repositories {
 	mavenCentral()
 }
 
+sourceSets {
+	main {
+		proto {
+			srcDir 'src/main/proto'
+		}
+
+		java {
+			srcDirs 'build/generated/source/proto/main/java'
+		}
+	}
+}
+
 protobuf {
 	//这里配置protoc编译器
 	protoc {
-		artifact  = 'com.google.protobuf:protoc:3.0.0'
+		artifact  = 'com.google.protobuf:protoc:3.1.0'
 	}
 }
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter')
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile("org.springframework.boot:spring-boot-starter-actuator")
-	compile 'com.google.protobuf:protobuf-java:3.0.0'
+	compile 'com.google.protobuf:protobuf-java:3.1.0'
+
+	// https://mvnrepository.com/artifact/com.googlecode.protobuf-java-format/protobuf-java-format
+	compile group: 'com.googlecode.protobuf-java-format', name: 'protobuf-java-format', version: '1.4'
+
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
